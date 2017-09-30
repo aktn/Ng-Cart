@@ -18,6 +18,7 @@ import { FormGroup } from '@angular/forms';
                     <div class="item-display__img">
                         <img src="img/{{ product.image }}.svg">
                     </div>
+                    <item-counter [min]="1" [max]="10" [step]="1" formControlName="quantity"></item-counter>
                 </div>
                 <button type="button" (click)="onAdd()">Add</button>
             </div>
@@ -27,7 +28,6 @@ import { FormGroup } from '@angular/forms';
 
 export class ItemDisplayComponent{
     @Input() products: Product[];
-
     @Input() parent: FormGroup;
 
     @Output() added = new EventEmitter<any>();

@@ -10,6 +10,7 @@ import { HttpModule } from '@angular/http';
 import { ItemCartComponent } from './components/item-cart/item-cart.component';
 import { ItemSelectorComponent } from './components/item-selector/item-selector.component';
 import { ItemDisplayComponent } from './components/item-display/item-display.component';
+import { ItemCounterComponent } from './components/item-counter/item-counter.component';
 
 //Containers
 import { ShopComponent } from './containers/shop/shop.component';
@@ -25,7 +26,8 @@ import { ShopComponent } from './containers/shop/shop.component';
         ItemCartComponent,
         ItemDisplayComponent,
         ItemSelectorComponent,
-        ShopComponent
+        ShopComponent,
+        ItemCounterComponent
     ],
     exports: [
         ShopComponent
