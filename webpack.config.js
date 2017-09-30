@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const typescript = require('typescript');
 const { AotPlugin } = require('@ngtools/webpack');
 
+var jsonServer = require('json-server');
+
 const rules = [
   { test: /\.html$/, loader: 'html-loader' },
   { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'] },
@@ -86,6 +88,14 @@ module.exports = {
       warnings: false
     },
     publicPath: '/build/',
+    compress: true,
+    inline: true,
+    hot: true,
+    quiet: true,
+    historyApiFallback: true,
+    setup: function (app) {
+      app.use('/api', jsonServer.router('db.json'));
+    },
     port: 3000
   },
   devtool: 'sourcemap',

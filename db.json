@@ -1,0 +1,9 @@
+{
+    "products" : [
+        {"id": 1, "name": "Apple", "price": 20, "image": "plus" }
+    ],
+
+    "cart": [
+        {"product_id": 1, "quantity": 2 }
+    ]
+}
