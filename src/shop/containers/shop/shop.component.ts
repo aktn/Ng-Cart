@@ -18,7 +18,7 @@ import 'rxjs/add/observable/forkJoin';
             <form (ngSubmit)="onSubmit()" [formGroup]="form">
                 <item-display [parent]="form" [products]="products" (added)="addItem($event)"></item-display>
                 <item-selector [parent]="form" ></item-selector>
-                <item-cart [parent]="form" [map]="map"></item-cart>
+                <item-cart [parent]="form" [map]="map" (remove)="deleteItem($event)"></item-cart>
             </form>
         </div>
     `
@@ -65,5 +65,10 @@ export class ShopComponent implements OnInit{
         console.log(item);
         const control = this.form.get('cart') as FormArray;
         control.push(this.createItem(item));
+    }
+
+    deleteItem({i, item}: {i: number, item: Product}){
+        const control = this.form.get('cart') as FormArray;
+        control.removeAt(i);
     }
 }

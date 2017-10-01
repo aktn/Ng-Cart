@@ -1,5 +1,5 @@
 import { Product } from './../../models/product.interface';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 
 @Component({
@@ -16,6 +16,7 @@ import { FormGroup, FormArray } from '@angular/forms';
                         <div class="item-cart__price">
                             {{ getProduct(item.value.product_id).price | currency:'GBP': true }}
                         </div>
+                        <button type="button" (click)="removeItem(i, item)">Remove</button>
                     </div>
                 </div>
             </div>
@@ -35,5 +36,9 @@ export class ItemCartComponent{
     getProduct(id: any){
         return this.map.get(id);
     }
-    
+
+    @Output() remove = new EventEmitter<any>();
+    removeItem(index: number, item: Product){
+        this.remove.emit({index, item});
+    }   
 }
