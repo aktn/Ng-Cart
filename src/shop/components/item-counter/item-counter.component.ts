@@ -14,11 +14,13 @@ const CounterAccessor = {
     template: `
         <div class="item-counter">
             <div>
-                <p>{{ value }}</p>
-            </div>
-            <div>
-                <button type="button" [disabled]="value === max" (click)="increment()">+</button>
-                <button type="button" [disabled]="value === min" (click)="decrement()">-</button>
+                <div>
+                    <p>{{ value }}</p>
+                    <div>
+                        <button type="button" [disabled]="value === max" (click)="increment()">+</button>
+                        <button type="button" [disabled]="value === min" (click)="decrement()">-</button>
+                    </div>
+                </div>
             </div>
         </div>
     `

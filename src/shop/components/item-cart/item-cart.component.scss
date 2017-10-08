@@ -1,0 +1,44 @@
+.item-cart {
+  padding: 1.5em 0;
+  .items {
+    width: 100%;
+    display: block;
+    .info {
+      display: table;
+      width: 100%;
+    }
+    .section {
+      display: table-cell;
+      vertical-align: middle;
+      .itemNumber {
+        margin-bottom: .5em;
+        font-size: .75em;
+        color: #777;
+      }
+      h3 {
+        font-size: 1em;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: .025em;    
+      }
+      p {
+        display: inline-block;
+        font-size: .85em;
+        color: #777777;
+      }
+      .itemImg {
+        width: 8em; 
+        float: left;
+        display: inline;
+        padding-right: 1em;
+      }
+      &.prodTotal {
+        text-align: center;
+        p {
+          font-weight: bold;
+          font-size: 1.25em;
+        }    
+      }
+    }
+  }
+} 

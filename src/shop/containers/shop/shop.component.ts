@@ -14,11 +14,17 @@ import 'rxjs/add/observable/forkJoin';
     selector : 'shop',
     styleUrls: ['shop.component.scss'],
     template: `
-        <div>
+        <div class="row">
             <form (ngSubmit)="onSubmit()" [formGroup]="form">
-                <item-display [parent]="form" [products]="products" (added)="addItem($event)"></item-display>
-                <item-selector [parent]="form" ></item-selector>
-                <item-cart [parent]="form" [map]="map" (remove)="deleteItem($event)"></item-cart>
+                <div class="col-12 col-m-12 ">
+                    <item-display [parent]="form" [products]="products" (added)="addItem($event)"></item-display>
+                </div>
+                <div class="col-6 col-m-12">
+                    <item-cart [parent]="form" [map]="map" (remove)="deleteItem($event)"></item-cart>
+                </div>
+                <div class="col-6 col-m-12">
+                     <pre>{{ form.value | json }}</pre>
+                </div>    
             </form>
         </div>
     `
@@ -51,7 +57,7 @@ export class ShopComponent implements OnInit{
 
     form = this.fb.group({
         cart: this.fb.array([]),
-        selector: this.createItem({product_id: 1, quantity: 3})
+        selector: this.createItem({})
     })
 
     createItem(item: any){
@@ -67,8 +73,9 @@ export class ShopComponent implements OnInit{
         control.push(this.createItem(item));
     }
 
-    deleteItem({i, item}: {i: number, item: Product}){
+    deleteItem({group, index}: { group: FormGroup, index: number}){
         const control = this.form.get('cart') as FormArray;
-        control.removeAt(i);
+        control.removeAt(index);
     }
+
 }

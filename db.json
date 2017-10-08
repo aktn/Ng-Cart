@@ -1,9 +1,13 @@
 {
     "products" : [
-        {"id": 1, "name": "Apple", "price": 20, "image": "plus" }
+        {"id": 1, "name": "Tee", "price": 20, "image": "t-shirt" },
+        {"id": 2, "name": "Vest", "price": 15, "image": "vest" },
+        {"id": 3, "name": "Sweater", "price": 30, "image": "sweater" },
+        {"id": 4, "name": "Shoes", "price": 40, "image": "shoe" }
     ],
 
     "cart": [
-        {"product_id": 1, "quantity": 3 }
+        { "product_id": 1, "quantity": 5},
+        { "product_id": 4, "quantity": 3}
     ]
 }

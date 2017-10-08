@@ -8,18 +8,26 @@ import { FormGroup, FormArray } from '@angular/forms';
     template: `
         <div [formGroup]="parent">
             <div formArrayName="cart">
-                <div *ngFor="let item of items; let i = index;">
-                    <div class="item-cart" [formGroupName]="i">
-                        <div class="item-cart__name">
-                            {{ getProduct(item.value.product_id).name }}
+                <ul>
+                    <div *ngFor="let item of items; let i = index;">
+                        <div class="item-cart" [formGroupName]="i"> 
+                            <li class="items">
+                                <div class="info">
+                                    <div class="section">
+                                        <img src="img/{{ getProduct(item.value.product_id).image }}.svg" class="itemImg">    
+                                        <h3>{{ getProduct(item.value.product_id).name }}</h3> 
+                                        <p>{{ getProduct(item.value.product_id).price | currency:'GBP': true }}</p>
+                                        <input type="number" step="1" min="1" max="10" formControlName="quantity">
+                                    </div>
+                                    <div class="prodTotal section">
+                                        <img src="img/remove.svg" (click)="removeItem(item, i)" />
+                                    </div>
+                                </div>
+                            </li>      
                         </div>
-                        <div class="item-cart__price">
-                            {{ getProduct(item.value.product_id).price | currency:'GBP': true }}
-                        </div>
-                        <button type="button" (click)="removeItem(i, item)">Remove</button>
                     </div>
-                </div>
-            </div>
+                </ul>
+            </div>   
         </div>
     `
 })
@@ -38,7 +46,8 @@ export class ItemCartComponent{
     }
 
     @Output() remove = new EventEmitter<any>();
-    removeItem(index: number, item: Product){
-        this.remove.emit({index, item});
+    removeItem(item: Product, index: number){
+        this.remove.emit({item, index});
+        console.log(index, item);
     }   
 }

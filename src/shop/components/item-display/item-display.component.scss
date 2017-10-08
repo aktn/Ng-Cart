@@ -1,0 +1,57 @@
+.item-display {
+  padding: 0.5em 0;
+  width: 400px;
+  margin: 0 auto;
+  display: block;
+  border-bottom: 1px solid #232323;
+  .items {
+    display: block;
+    width: 100%;
+    padding: 1.5em;
+    border-bottom: 1px solid #fafafa;
+    .info {
+      display: table;
+      width: 100%;
+    }
+    .section { 
+      display: inline-block;
+      vertical-align: middle; 
+      &.prodTotal {
+        text-align: center;
+      }
+    }
+  }
+} 
+
+.add{
+  font-size: 1em;
+  font-weight: bold;
+  text-align: right;
+  margin: 7px;
+  letter-spacing: -.015em;
+  padding: 0.5em 1em;
+  color: #fff;
+  background: #82ca9c;
+  border-radius: 10px;
+  float: right;
+}
+
+select{
+  -webkit-appearance: none;
+  text-indent: .01px;
+  text-overflow: '';
+  overflow: hidden;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 50px 10px 15px;
+  border-radius: 0;
+  color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  outline: none;
+  background:
+    linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.7) 50%)
+    no-repeat calc(100% - 20px) calc(1em + 4px),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.7) 50%, transparent 50%)
+    no-repeat calc(100% - 15px) calc(1em + 4px);
+  background-size: 5px 5px, 5px 5px;
+}

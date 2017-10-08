@@ -7,20 +7,27 @@ import { FormGroup } from '@angular/forms';
     styleUrls: ['item-display.component.scss'],
     template: `
         <div [formGroup]="parent" class="item-display">
-            <div formGroupName="selector">
-                <div *ngFor="let product of products">
-                    <div class="item-display__name">
-                        {{ product.name }}
-                    </div>
-                    <div class="item-display__price">
-                        {{ product.price }}
-                    </div>
-                    <div class="item-display__img">
-                        <img src="img/{{ product.image }}.svg">
-                    </div>
-                    <item-counter [min]="1" [max]="10" [step]="1" formControlName="quantity"></item-counter>
-                </div>
-                <button type="button" (click)="onAdd()">Add</button>
+            <div formGroupName="selector">   
+                <ul>
+                    <li class="items">
+                        <div class="info">
+                            <div class="section">
+                                <select formControlName="product_id">
+                                    <option value="">Select Product</option>
+                                    <option *ngFor="let product of products" [value]="product.id">
+                                        {{ product.name }}
+                                    </option>
+                                </select>        
+                            </div>
+                            <div class="prodTotal section">
+                                <item-counter [min]="1" [max]="10" [step]="1" formControlName="quantity"></item-counter>
+                            </div>         
+                            <div class="prodTotal section">
+                                <button type="button" class="add" (click)="onAdd()">Add</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     `
@@ -33,7 +40,7 @@ export class ItemDisplayComponent{
     @Output() added = new EventEmitter<any>();
     onAdd(){
          this.added.emit(this.parent.get('selector').value);
-         this.parent.get('selector').reset({product_id: '',quantity: 0});
+         this.parent.get('selector').reset({product_id: '',quantity: 1});
     }
 
 }

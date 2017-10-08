@@ -6,7 +6,6 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['item-selector.component.scss'],
     template: `
         <div [formGroup]="parent" class="item-display">
-            Item Selector
             <div class="item-display__name">
                 
             </div>

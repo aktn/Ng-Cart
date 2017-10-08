@@ -1,0 +1,28 @@
+.item-counter {    
+  border-radius: 3px;
+  overflow: hidden;
+  p {
+    width: 40px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+  }
+  & > div > div {
+    display: flex;
+    align-items: center;
+    & > div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  button {      
+    border-radius: 0;
+    padding: 3px 7px;
+    background: #82ca9c;
+    color: #fff;
+    font-weight: 600;
+    &:disabled {
+      background: #f25959;
+    }
+  }
+}
