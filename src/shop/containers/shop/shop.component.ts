@@ -15,12 +15,15 @@ import 'rxjs/add/observable/forkJoin';
     styleUrls: ['shop.component.scss'],
     template: `
         <div class="row">
-            <form (ngSubmit)="onSubmit()" [formGroup]="form">
+            <form [formGroup]="form">
                 <div class="col-12 col-m-12 ">
                     <item-display [parent]="form" [products]="products" (added)="addItem($event)"></item-display>
                 </div>
                 <div class="col-6 col-m-12">
                     <item-cart [parent]="form" [map]="map" (remove)="deleteItem($event)"></item-cart>
+                    <div class="total">
+                        Total: {{ total | currency: 'GBP': true }}
+                    </div>
                 </div>
                 <div class="col-6 col-m-12">
                      <pre>{{ form.value | json }}</pre>
@@ -52,6 +55,11 @@ export class ShopComponent implements OnInit{
                 this.products = products;
                 
                 cart.forEach(item => this.addItem(item));
+
+                this.calculateTotal(this.form.get('cart').value);
+                this.form.get('cart').valueChanges.subscribe(
+                    value=> this.calculateTotal(value)
+                );
             });
     }
 
@@ -76,6 +84,14 @@ export class ShopComponent implements OnInit{
     deleteItem({group, index}: { group: FormGroup, index: number}){
         const control = this.form.get('cart') as FormArray;
         control.removeAt(index);
+    }
+
+    total: number;
+    calculateTotal(value: Item[]){
+        const total = value.reduce((prev, next)=>{
+            return prev + (next.quantity * this.map.get(next.product_id).price);
+        },0);
+        this.total = total;
     }
 
 }
